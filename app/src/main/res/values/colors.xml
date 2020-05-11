@@ -5,4 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#ffff</color>
     <color name="black">#000</color>
+    <color name="recover">#00796b</color>
+    <color name="death">#d32f2f</color>
+    <color name="confirm">#fdd835</color>
+    <color name="ripple">#A1EFEFEF</color>
 </resources>

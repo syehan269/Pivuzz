@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ActivitySetting">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarSet"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarSet"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/settings"
+            android:background="@color/white"
+            app:titleTextColor="@color/colorPrimary"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

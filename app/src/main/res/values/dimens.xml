@@ -4,4 +4,6 @@
     <dimen name="margin_sekunder">16dp</dimen>
     <dimen name="text_size">12sp</dimen>
     <dimen name="text_title">16sp</dimen>
+    <dimen name="elevation">8dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
 </resources>

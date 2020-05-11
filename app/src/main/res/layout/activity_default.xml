@@ -13,9 +13,11 @@
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarDef"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:titleTextColor="@color/colorPrimary"
+            style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
             app:title="@string/home"
             app:menu="@menu/main_option"
             android:background="@color/white"/>

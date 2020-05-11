@@ -7,4 +7,13 @@
     <string name="global">Global</string>
     <string name="about">About</string>
     <string name="desc">splash img</string>
+    <string name="creator">Dayyan Syehan</string>
+    <string name="created">Created by </string>
+    <string name="obtain">Data obtained from</string>
+    <string name="api">COVID-19 API by Mathdroid</string>
+    <string name="privacy">All data collected from your device is never shared.</string>
+    <string name="confirm">Confirm Cases</string>
+    <string name="onek">1000</string>
+    <string name="recover">Recover</string>
+    <string name="death">Death</string>
 </resources>
