@@ -6,4 +6,6 @@
     <dimen name="text_title">16sp</dimen>
     <dimen name="elevation">8dp</dimen>
     <dimen name="margin_small">5dp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_xlarge">24sp</dimen>
 </resources>

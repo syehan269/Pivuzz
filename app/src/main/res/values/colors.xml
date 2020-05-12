@@ -8,5 +8,5 @@
     <color name="recover">#00796b</color>
     <color name="death">#d32f2f</color>
     <color name="confirm">#fdd835</color>
-    <color name="ripple">#A1EFEFEF</color>
+    <color name="ripple">#2B2B2B</color>
 </resources>

@@ -12,8 +12,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Handler().postDelayed({
-            startActivity(Intent(this, ActivityDefault::class.java))
-            finish()
+
+            val accountPreference = AccountPreference(this)
+            if (accountPreference.getBoolean("isLogin")){
+                startActivity(Intent(this, ActivityDefault::class.java))
+                finish()
+            }else{
+                startActivity(Intent(this, ActivityLogin::class.java))
+                finish()
+            }
+
         }, 300)
+
     }
 }

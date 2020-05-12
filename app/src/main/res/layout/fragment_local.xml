@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentLocal"
-    android:padding="@dimen/margin_global">
+    tools:context=".FragmentLocal">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="@dimen/margin_global"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -21,7 +21,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
                 app:rippleColor="@color/ripple"
                 android:clickable="true"
                 android:focusable="true"
@@ -51,9 +51,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/confirm"
+                        android:fontFamily="@font/nanumgothic_bold"
                         android:textColor="@color/white"
                         android:textStyle="bold"
-                        android:textSize="25sp" />
+                        android:textSize="@dimen/text_large" />
 
                     <TextView
                         app:layout_constraintStart_toStartOf="parent"
@@ -67,27 +68,27 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textColor="@color/white"
-                        android:textSize="23sp"/>
+                        android:textSize="@dimen/text_large"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <GridLayout
+            <LinearLayout
                 app:layout_constraintTop_toBottomOf="@id/cv_confirm_local"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
                 android:orientation="horizontal"
                 android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_margin="@dimen/margin_small"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="180dp"
                     app:rippleColor="@color/ripple"
                     android:clickable="true"
                     android:focusable="true"
@@ -101,13 +102,13 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:src="@drawable/heart"
-                            app:layout_constraintBottom_toTopOf="@+id/tv_recover_local"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_recover_global"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/tv_recover_local"
+                            android:id="@+id/tv_recover_global"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/tv_nmb_recover_local"
@@ -115,12 +116,13 @@
                             android:layout_marginBottom="@dimen/margin_global"
                             android:layout_marginTop="@dimen/margin_global"
                             android:layout_marginStart="@dimen/margin_global"
+                            android:fontFamily="@font/nanumgothic_bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/recover"
                             android:textColor="@color/white"
                             android:textStyle="bold"
-                            android:textSize="25sp" />
+                            android:textSize="@dimen/text_large" />
 
                         <TextView
                             android:id="@+id/tv_nmb_recover_local"
@@ -132,7 +134,7 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:textColor="@color/white"
-                            android:textSize="23sp"
+                            android:textSize="@dimen/text_large"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
 
@@ -141,8 +143,9 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_margin="@dimen/margin_small"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
                     app:rippleColor="@color/ripple"
                     android:clickable="true"
                     android:focusable="true"
@@ -155,19 +158,20 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:src="@drawable/golgotha"
-                            app:layout_constraintBottom_toTopOf="@+id/tv_death_local"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_death_global"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/tv_death_local"
+                            android:id="@+id/tv_death_global"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_global"
                             android:text="@string/death"
                             android:textColor="@color/white"
-                            android:textSize="25sp"
+                            android:fontFamily="@font/nanumgothic_bold"
+                            android:textSize="@dimen/text_large"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/tv_nmb_death_local"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -188,12 +192,12 @@
                             android:ellipsize="end"
                             android:text="@string/onek"
                             android:textColor="@color/white"
-                            android:textSize="23sp"/>
+                            android:textSize="@dimen/text_large"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-            </GridLayout>
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

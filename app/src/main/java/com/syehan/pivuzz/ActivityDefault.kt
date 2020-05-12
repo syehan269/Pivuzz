@@ -16,6 +16,7 @@ class ActivityDefault : AppCompatActivity() {
         setContentView(R.layout.activity_default)
         val tabAdapter = TabAdapter(supportFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         viewPager.adapter = tabAdapter
+        val accountPreference = AccountPreference(this)
 
         toolbarDef.setOnMenuItemClickListener {
             when(it.itemId){
@@ -24,7 +25,13 @@ class ActivityDefault : AppCompatActivity() {
                     return@setOnMenuItemClickListener true
                 }
                 R.id.setting ->{
-                    startActivity(Intent(this, ActivitySetting::class.java))
+                    startActivity(Intent(this, ActivityProfile::class.java))
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.logout ->{
+                    accountPreference.removeValue("isLogin")
+                    startActivity(Intent(this, ActivityLogin::class.java))
+                    finish()
                     return@setOnMenuItemClickListener true
                 }
                 else -> return@setOnMenuItemClickListener false

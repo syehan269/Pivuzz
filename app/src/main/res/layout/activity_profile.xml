@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivitySetting">
+    tools:context=".ActivityProfile">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarSet"
@@ -18,7 +18,7 @@
             android:id="@+id/toolbarSet"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/settings"
+            app:title="@string/profile"
             android:background="@color/white"
             app:titleTextColor="@color/colorPrimary"/>
 

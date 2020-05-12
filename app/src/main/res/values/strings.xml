@@ -16,4 +16,11 @@
     <string name="onek">1000</string>
     <string name="recover">Recover</string>
     <string name="death">Death</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="login">Login</string>
+    <string name="enterName">Enter Username</string>
+    <string name="enterPass">Enter Password</string>
+    <string name="createAcc">Create an account</string>
+    <string name="register">Register</string>
 </resources>
