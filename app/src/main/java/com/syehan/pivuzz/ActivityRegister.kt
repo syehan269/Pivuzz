@@ -21,10 +21,14 @@ class ActivityRegister : AppCompatActivity() {
         btn_register.setOnClickListener {
             val getName: String =  et_name_reg.text.toString()
             val getPass: String = et_pass_reg.text.toString()
+            val getLocId: Int = spn_location_reg.selectedItemPosition
+            val getLoc: String = spn_location_reg.selectedItem.toString()
 
             if (getName.isNotEmpty() && getPass.isNotEmpty()){
                 accountPreference.save("username",getName)
                 accountPreference.save("password", getPass)
+                accountPreference.save("locationId", getLocId)
+                accountPreference.save("location", getLoc)
 
                 //Toast.makeText(this, "created id: $getName pass: $getPass", Toast.LENGTH_SHORT).show()
                 //Toast.makeText(this, "id: $setName pass: $setPass", Toast.LENGTH_SHORT).show()
