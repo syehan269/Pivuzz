@@ -12,8 +12,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_global">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_confirm_global"
@@ -25,9 +24,11 @@
                 app:rippleColor="@color/ripple"
                 android:clickable="true"
                 android:focusable="true"
+                android:layout_marginTop="@dimen/margin_global"
+                android:layout_marginStart="@dimen/margin_global"
+                android:layout_marginEnd="@dimen/margin_global"
                 style="@style/Widget.MaterialComponents.CardView"
                 app:cardBackgroundColor="@color/colorPrimary"
-                android:layout_margin="5dp"
                 app:cardElevation="4dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,13 +84,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_global"
+                android:layout_marginEnd="@dimen/margin_global"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_margin="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="180dp"
@@ -146,7 +151,9 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_margin="@dimen/margin_small"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_weight="1"
@@ -203,30 +210,74 @@
 
             </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                app:layout_constraintTop_toBottomOf="@id/ln_body"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:rippleColor="@color/ripple"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_daily"
                 android:clickable="true"
                 android:focusable="true"
-                style="@style/Widget.MaterialComponents.CardView"
-                app:cardBackgroundColor="@color/colorPrimary"
-                android:layout_margin="5dp"
-                app:cardElevation="4dp">
+                app:layout_constraintTop_toBottomOf="@id/ln_body"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/margin_small"
+                android:padding="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:rippleColor="@color/ripple"
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/globalreport"
+                    android:textSize="@dimen/text_title"
+                    android:textStyle="bold"
+                    android:layout_margin="@dimen/margin_global"/>
+
+                <ImageButton
+                    android:id="@+id/ib_global"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:clickable="true"
                     android:focusable="true"
-                    android:padding="@dimen/margin_global">
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                    android:background="@color/trans"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_global"/>
 
-            </com.google.android.material.card.MaterialCardView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ib_global"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/margin_global"
+                    android:background="#6200EA"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_global"
+                android:layout_marginTop="@dimen/margin_global"
+                app:layout_constraintTop_toBottomOf="@id/cl_daily"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+-->
+            <include
+                layout="@layout/list_global_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_global"
+                app:layout_constraintTop_toBottomOf="@id/cl_daily"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

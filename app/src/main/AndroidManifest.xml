@@ -10,8 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityRegister"
-            android:parentActivityName=".ActivityLogin"/>
+        <activity android:name=".ActivityLocal"
+            android:parentActivityName=".ActivityDefault"/>
+        <activity android:name=".ActivityDaily"
+            android:parentActivityName=".ActivityDefault"/>
+        <activity
+            android:name=".ActivityRegister"
+            android:parentActivityName=".ActivityLogin" />
         <activity android:name=".ActivityLogin" />
         <activity
             android:name=".ActivityProfile"

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    app:rippleColor="#A47C7C7C"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    android:layout_marginTop="@dimen/margin_small">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_global">
+
+        <ImageView
+            android:id="@+id/iv_list_daily"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/outline_assessment_24"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/tv_disclaimer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_list_daily"
+            android:layout_marginStart="@dimen/margin_global"
+            android:id="@+id/tv_date_daily"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"/>
+
+        <TextView
+            android:id="@+id/tv_country_daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="Country"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/tv_date_daily"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/margin_sekunder" />
+
+        <LinearLayout
+            android:id="@+id/ln_confirm"
+            app:layout_constraintTop_toBottomOf="@id/tv_country_daily"
+            app:layout_constraintStart_toEndOf="@id/iv_list_daily"
+            android:layout_marginStart="@dimen/margin_global"
+            android:layout_marginTop="@dimen/margin_global"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/confirm"
+                android:textStyle="bold"
+                android:text="Confirmed : " />
+
+            <TextView
+                android:id="@+id/tv_confirm_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000000"
+                android:textColor="@color/confirm"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_small"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_recovery"
+            app:layout_constraintTop_toBottomOf="@id/ln_confirm"
+            app:layout_constraintStart_toEndOf="@id/iv_list_daily"
+            android:layout_marginStart="@dimen/margin_global"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/recover"
+                android:text="Recovered : " />
+
+            <TextView
+                android:id="@+id/tv_recover_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000000"
+                android:textColor="@color/recover"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_small"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@id/tv_country_daily"
+            app:layout_constraintStart_toEndOf="@id/ln_confirm"
+            android:layout_marginStart="@dimen/margin_global"
+            android:layout_marginTop="@dimen/margin_global"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/death"
+                android:text="Death : " />
+
+            <TextView
+                android:id="@+id/tv_death_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000000"
+                android:textStyle="bold"
+                android:textColor="@color/death"
+                android:layout_marginStart="@dimen/margin_small"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_disclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_global"
+            android:layout_marginStart="@dimen/margin_global"
+            android:layout_marginEnd="@dimen/margin_global"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/disclaimer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ln_recovery" />
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</com.google.android.material.card.MaterialCardView>

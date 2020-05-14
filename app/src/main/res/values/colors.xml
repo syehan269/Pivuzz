@@ -9,4 +9,5 @@
     <color name="death">#d32f2f</color>
     <color name="confirm">#fdd835</color>
     <color name="ripple">#2B2B2B</color>
+    <color name="trans">#00FFFFFF</color>
 </resources>

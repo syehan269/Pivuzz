@@ -11,6 +11,9 @@
         <item>Canada</item>
         <item>Russia</item>
     </string-array>
+    <string name="dnc">Death &amp; Confirmed</string>
+    <string name="globalreport">Daily Global Report</string>
+    <string name="disclaimer">Confirm number, recovered number, death number are total from all data.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="local">Local</string>
