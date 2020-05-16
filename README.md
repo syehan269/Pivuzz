@@ -6,4 +6,4 @@ Pivuzz merupakan aplikasi untuk mengamati perkembangan dari wabah Covid-19.
 </ul>
 <br>
  <h3>Screenshoot</h3>
- ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+ ![Login](https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-173836.png?raw=true)
