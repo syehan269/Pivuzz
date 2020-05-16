@@ -31,15 +31,6 @@ class FragmentLocal : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        cv_death_local.setOnClickListener {
-            startActivity(Intent(context, ActivityLocal::class.java))
-        }
-
-        cv_confirm_local.setOnClickListener {
-            startActivity(Intent(context, ActivityLocal::class.java))
-        }
-
     }
 
     override fun onStart() {
