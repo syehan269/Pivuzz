@@ -29,8 +29,9 @@ class DateAdapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: DateHolder, position: Int) {
+        val getPlace = list[position].countryRegion + ", "+ list[position].provinceState
         holder.tvConfirm.text = list[position].confirmed
-        holder.tvCountry.text = list[position].countryRegion
+        holder.tvCountry.text = getPlace
         holder.tvDeath.text = list[position].deaths
         holder.tvRecov.text = list[position].recovered
     }

@@ -10,6 +10,23 @@
         <item>Mexico</item>
         <item>Canada</item>
         <item>Russia</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Germany</item>
+        <item>India</item>
+        <item>Italy</item>
+        <item>Israel</item>
+        <item>Laos</item>
+        <item>Mexico</item>
+        <item>Pakistan</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Singapore</item>
+        <item>Somalia</item>
+        <item>Thailand</item>
+        <item>Belgium</item>
+        <item>Canada</item>
+        <item>Denmark</item>
     </string-array>
     <string name="dnc">Death &amp; Confirmed</string>
     <string name="death1">Death</string>
@@ -30,7 +47,7 @@
     <string name="api">COVID-19 API by Mathdroid</string>
     <string name="privacy">All data collected from your device is never shared.</string>
     <string name="confirm">Confirm Cases</string>
-    <string name="onek">1000</string>
+    <string name="onek">-</string>
     <string name="recover">Recover</string>
     <string name="death">Death</string>
     <string name="profile">Profile</string>

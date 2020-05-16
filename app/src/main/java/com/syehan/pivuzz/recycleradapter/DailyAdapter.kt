@@ -19,6 +19,7 @@ class DailyAdapter internal constructor(
         val tvDeath: TextView = itemView.findViewById(R.id.tv_death_over)
         val tvConfirm: TextView = itemView.findViewById(R.id.tv_confirm_over)
         val tvRecov: TextView = itemView.findViewById(R.id.tv_recover_over)
+        val tvDate: TextView = itemView.findViewById(R.id.tv_daily_date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyHolder {
@@ -37,5 +38,7 @@ class DailyAdapter internal constructor(
     override fun onBindViewHolder(holder: DailyHolder, position: Int) {
         holder.tvConfirm.text = list[position].totalConfirmed.toString()
         holder.tvRecov.text = list[position].totalRecovered.toString()
+        holder.tvDeath.text = list[position].deaths.total.toString()
+        holder.tvDate.text = list[position].reportDate
     }
 }

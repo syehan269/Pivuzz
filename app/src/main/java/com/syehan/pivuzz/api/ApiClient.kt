@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private val url: String = "https://covid19.mathdro.id/api/"
+    private val url: String = "https://covid19.mathdro.id/"
     val getClient: ApiPoint
         get() {
             val gson = GsonBuilder()

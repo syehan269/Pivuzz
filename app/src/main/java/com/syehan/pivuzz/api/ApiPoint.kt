@@ -7,16 +7,19 @@ import retrofit2.http.Path
 
 interface ApiPoint {
 
-    @GET
+    @GET("api")
     fun getMainInfo(): Call<CovMain>
 
-    @GET("daily")
+    @GET("api/daily")
     fun getListDaily(): Call<List<DailyReportItem>>
 
-    @GET("daily/{date}")
+    @GET("api/daily/{date}")
     fun getDateReport(@Path("date") date: String): Call<List<DateItem>>
 
-    @GET("countries")
+    @GET("api/countries")
     fun getCountry(): Call<Count>
+
+    @GET("api/countries/{country}")
+    fun getLocal(@Path("country") country: String): Call<Local>
 
 }

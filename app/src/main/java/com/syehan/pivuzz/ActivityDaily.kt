@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.syehan.pivuzz.api.ApiClient
+import com.syehan.pivuzz.model.Date
 import com.syehan.pivuzz.model.DateItem
 import com.syehan.pivuzz.recycleradapter.DateAdapter
 import kotlinx.android.synthetic.main.activity_daily.*
@@ -18,11 +19,13 @@ import kotlin.collections.ArrayList
 
 class ActivityDaily : AppCompatActivity() {
 
-    val dailyList = ArrayList<DateItem>()
     val calendar = Calendar.getInstance()
     val year1 = calendar.get(Calendar.YEAR)
     val month1 = calendar.get(Calendar.MONTH)
     val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    val dailyList = ArrayList<DateItem>()
+    var adapter: DateAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +38,10 @@ class ActivityDaily : AppCompatActivity() {
 
         manager.orientation = LinearLayoutManager.VERTICAL
         manager.isSmoothScrollbarEnabled = true
+        adapter = DateAdapter(dailyList)
+
         rv_daily.layoutManager = manager
-        rv_daily.adapter = DateAdapter(dailyList)
+        rv_daily.adapter = adapter
 
         fab_daily.setOnClickListener {
             showDatePicker(year1, month1, day)
@@ -51,12 +56,13 @@ class ActivityDaily : AppCompatActivity() {
         getList(getDate)
     }
 
+
     private fun showDatePicker(year: Int, month: Int, day: Int) {
 
         val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             val getDate = "$month-$dayOfMonth-$year"
-            //getList(getDate)
-            dailyList.clear()
+            getList(getDate)
+            //dailyList.clear()
 
         }, year, month, day)
 
@@ -64,6 +70,7 @@ class ActivityDaily : AppCompatActivity() {
     }
 
     private fun getList(date: String) {
+
         val call: Call<List<DateItem>> = ApiClient.getClient.getDateReport(date)
         call.enqueue(object : Callback<List<DateItem>>{
             override fun onFailure(call: Call<List<DateItem>>, t: Throwable) {
@@ -75,9 +82,9 @@ class ActivityDaily : AppCompatActivity() {
                 response: Response<List<DateItem>>
             ) {
                 toast(date)
+                dailyList.clear()
                 dailyList.addAll(response.body()!!)
-                dailyList.reverse()
-                rv_daily.adapter!!.notifyDataSetChanged()
+                adapter?.notifyDataSetChanged()
             }
 
         })

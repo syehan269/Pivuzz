@@ -29,14 +29,10 @@ class ActivityProfile : AppCompatActivity() {
         val setName: String? = accountPreference.getString("username")
         val setPass: String? = accountPreference.getString("password")
         val setLoc: Int? = accountPreference.getInt("locationId")
-        val location = arrayOf("USA", "Argentina", "Indonesia", "Mexico", "Canada", "Russia", "Japan")
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, location)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         et_pass_pro.setText(setPass)
         et_name_pro.setText(setName)
-        //spn_location.setSelection(setLoc!!)
+        spn_location.setSelection(setLoc!!)
         //spn_location.adapter = adapter
 
         btn_profile.setOnClickListener {
@@ -58,28 +54,6 @@ class ActivityProfile : AppCompatActivity() {
             }
 
         }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        setSpinner()
-    }
-
-    private fun setSpinner(){
-        val call : Call<Count> = ApiClient.getClient.getCountry()
-        call.enqueue(object: Callback<Count>{
-            override fun onFailure(call: Call<Count>, t: Throwable) {
-                toast(t.message!!)
-                log(t.message!!)
-            }
-
-            override fun onResponse(call: Call<Count>, response: Response<Count>) {
-                //val country: Count? = response.body()!!
-                //val adapter = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_dropdown_item, country)
-            }
-
-        })
 
     }
 

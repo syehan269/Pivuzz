@@ -99,6 +99,17 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_daily_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/onek"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/margin_global"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

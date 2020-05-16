@@ -7,27 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
 import com.syehan.pivuzz.api.ApiClient
 import com.syehan.pivuzz.model.CovMain
 import com.syehan.pivuzz.model.DailyReportItem
 import com.syehan.pivuzz.recycleradapter.DailyAdapter
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_daily.*
 import kotlinx.android.synthetic.main.fragment_global.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FragmentGlobal : Fragment() {
@@ -39,9 +28,8 @@ class FragmentGlobal : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_global, container, false)
 
-        return view
+        return inflater.inflate(R.layout.fragment_global, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,7 +62,13 @@ class FragmentGlobal : Fragment() {
             }
 
             override fun onResponse(call: Call<CovMain>, response: Response<CovMain>) {
-                toast(response.body()!!.confirmed.toString())
+                val confirm = response.body()!!.confirmed.value.toString()
+                val death = response.body()!!.deaths.value.toString()
+                val recovered = response.body()!!.recovered.value.toString()
+
+                tv_nmb_confirm_global.text = confirm
+                tv_nmb_death_global.text = death
+                tv_nmb_recover_global.text = recovered
             }
 
         })
