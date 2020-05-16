@@ -28,7 +28,10 @@ class ActivityLogin : AppCompatActivity() {
                 startActivity(Intent(this, ActivityDefault::class.java))
                 accountPreference.save("isLogin", true)
                 finish()
-            }else{
+            }else if(inputName.isEmpty() || inputPass.isEmpty()){
+                Toast.makeText(this, "Fill all the field", Toast.LENGTH_SHORT).show()
+            }
+            else{
                 Toast.makeText(this, "No account has been registered", Toast.LENGTH_SHORT).show()
             }
         }
