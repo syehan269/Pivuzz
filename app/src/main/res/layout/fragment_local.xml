@@ -41,7 +41,8 @@
                         android:layout_height="90dp"
                         android:src="@drawable/ic_done_all_black_24dp"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:contentDescription="@string/confirm" />
 
                     <TextView
                         android:id="@+id/tv_confirm_local"
@@ -105,7 +106,8 @@
                             app:layout_constraintBottom_toTopOf="@+id/tv_recover_global"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="@string/recove" />
 
                         <TextView
                             android:id="@+id/tv_recover_global"
@@ -162,7 +164,8 @@
                             app:layout_constraintBottom_toTopOf="@+id/tv_death_global"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="@string/death" />
 
                         <TextView
                             android:id="@+id/tv_death_global"

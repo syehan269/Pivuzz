@@ -28,6 +28,11 @@
         <item>Canada</item>
         <item>Denmark</item>
     </string-array>
+    <string name="more">More Report</string>
+    <string name="cou">Country</string>
+    <string name="con">Confirmed : </string>
+    <string name="dea">Death : </string>
+    <string name="rec">Recovery : </string>
     <string name="dnc">Death &amp; Confirmed</string>
     <string name="death1">Death</string>
     <string name="confirme">Confirmed</string>

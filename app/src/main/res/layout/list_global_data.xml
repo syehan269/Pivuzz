@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,28 +23,19 @@
             android:layout_marginEnd="@dimen/margin_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        
-        <TextView
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_list_daily"
-            android:layout_marginStart="@dimen/margin_global"
-            android:id="@+id/tv_date_daily"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date"/>
+            android:contentDescription="@string/globalreport" />
 
         <TextView
             android:id="@+id/tv_country_daily"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="Country"
+            android:text="@string/cou"
+            android:layout_marginStart="@dimen/margin_global"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/tv_date_daily"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/margin_sekunder" />
+            app:layout_constraintStart_toEndOf="@id/iv_list_daily"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/ln_confirm"
@@ -62,13 +52,13 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/confirm"
                 android:textStyle="bold"
-                android:text="Confirmed : " />
+                android:text="@string/con" />
 
             <TextView
                 android:id="@+id/tv_confirm_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1000000"
+                android:text="@string/onek"
                 android:textColor="@color/confirm"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/margin_small"/>
@@ -90,13 +80,13 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="@color/recover"
-                android:text="Recovered : " />
+                android:text="@string/rec" />
 
             <TextView
                 android:id="@+id/tv_recover_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1000000"
+                android:text="@string/onek"
                 android:textColor="@color/recover"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/margin_small"/>
@@ -117,13 +107,13 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="@color/death"
-                android:text="Death : " />
+                android:text="@string/dea" />
 
             <TextView
                 android:id="@+id/tv_death_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1000000"
+                android:text="@string/onek"
                 android:textStyle="bold"
                 android:textColor="@color/death"
                 android:layout_marginStart="@dimen/margin_small"/>

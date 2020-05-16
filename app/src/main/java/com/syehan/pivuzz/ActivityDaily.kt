@@ -81,7 +81,6 @@ class ActivityDaily : AppCompatActivity() {
                 call: Call<List<DateItem>>,
                 response: Response<List<DateItem>>
             ) {
-                toast(date)
                 dailyList.clear()
                 dailyList.addAll(response.body()!!)
                 adapter?.notifyDataSetChanged()
