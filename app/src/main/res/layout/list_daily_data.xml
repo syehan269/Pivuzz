@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="0dp"
+    android:layout_marginTop="@dimen/margin_small"
+    app:rippleColor="@color/bruh"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_global"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small">
+
+        <LinearLayout
+            android:id="@+id/ln_confirm"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirme"
+                android:textColor="@color/confirm"
+                android:layout_marginEnd="@dimen/margin_sekunder"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_confirm_over"
+                android:layout_marginStart="@dimen/margin_global"
+                android:layout_width="wrap_content"
+                android:textColor="@color/confirm"
+                android:layout_height="wrap_content"
+                android:text="@string/onek"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_recov"
+            app:layout_constraintTop_toBottomOf="@id/ln_confirm"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_small"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_sekunder"
+                android:text="@string/recove"
+                android:textColor="@color/recover"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_recover_over"
+                android:layout_marginStart="@dimen/margin_global"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/recover"
+                android:text="@string/onek"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_death"
+            app:layout_constraintTop_toBottomOf="@id/ln_recov"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_sekunder"
+                android:text="@string/death1"
+                android:textColor="@color/death"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_death_over"
+                android:layout_marginStart="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/onek"
+                android:textColor="@color/death"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

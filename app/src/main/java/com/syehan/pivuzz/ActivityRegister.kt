@@ -30,8 +30,6 @@ class ActivityRegister : AppCompatActivity() {
                 accountPreference.save("locationId", getLocId)
                 accountPreference.save("location", getLoc)
 
-                //Toast.makeText(this, "created id: $getName pass: $getPass", Toast.LENGTH_SHORT).show()
-                //Toast.makeText(this, "id: $setName pass: $setPass", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, ActivityLogin::class.java))
             }else{
                 Toast.makeText(this, "Fill all the field", Toast.LENGTH_SHORT).show()

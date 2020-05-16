@@ -108,8 +108,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/margin_sekunder"
-                android:spinnerMode="dialog"
                 android:entries="@array/location"
+                android:spinnerMode="dialog"
                 android:prompt="@string/location"/>
             <View
                 android:layout_width="match_parent"

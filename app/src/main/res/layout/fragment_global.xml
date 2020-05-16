@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentGlobal">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -209,7 +209,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
-
+<!--
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_daily"
                 android:clickable="true"
@@ -258,29 +258,40 @@
                     android:background="#6200EA"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-<!--
+-->
+            <View
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ln_body"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="@dimen/margin_global"
+                android:background="#6200EA"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_global"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/margin_global"
-                app:layout_constraintTop_toBottomOf="@id/cl_daily"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
--->
-            <include
-                layout="@layout/list_global_data"
-                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/separator" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_more"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_global"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_global"
-                app:layout_constraintTop_toBottomOf="@id/cl_daily"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:layout_margin="@dimen/margin_global"
+                android:text="More Report"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
