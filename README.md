@@ -5,9 +5,17 @@ Pivuzz merupakan aplikasi untuk mengamati perkembangan dari wabah Covid-19.
   <li> Laporan harian dari wabah, setiap harinya.</li>
 </ul>
 <br>
- <h3>Screenshoot</h3>
+ <h2>Screenshoot</h2>
 <p float="left">
  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174449.png"height="500" width="300" hspace="40">
  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174148.png"height="500" width="300" hspace="40" >    
 </p>
 <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-173836.png"height="500" width="300" hspace="40">
+<h2>Used Library</h2>
+ <ul>
+  <li>Material Design by Google</li>
+  <li>Gson, json file converter by Google</li>
+  <li>Okhttp http interceptor by Square, Inc</li>
+  <li>Retrofit2 by Square, Inc.</li>
+  <li>Kotlin Plugin by JetBrains</li>
+</ul>
