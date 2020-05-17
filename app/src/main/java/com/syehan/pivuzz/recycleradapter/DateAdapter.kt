@@ -13,7 +13,7 @@ class DateAdapter internal constructor(
 ): RecyclerView.Adapter<DateAdapter.DateHolder>() {
 
     class DateHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvCountry = itemView.findViewById<TextView>(R.id.tv_country_daily)
+        val tvCountry = itemView.findViewById<TextView>(R.id.tv_country_daily)!!
         val tvConfirm = itemView.findViewById<TextView>(R.id.tv_confirm_daily)
         val tvDeath = itemView.findViewById<TextView>(R.id.tv_death_daily)
         val tvRecov = itemView.findViewById<TextView>(R.id.tv_recover_daily)
