@@ -7,10 +7,17 @@
 <br>
  <h2>Screenshoot</h2>
 <p float="left">
- <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174449.png"height="500" width="300" hspace="40">
- <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174148.png"height="500" width="300" hspace="40" >    
+ <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174449.png" height="500" width="300" hspace="40">
+ <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174148.png" height="500" width="300" hspace="40" >    
 </p>
-<img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-173836.png"height="500" width="300" hspace="40">
+<p float="left">
+  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200518-042612.png" height="500" width="300" hspace="40">
+  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-173836.png"height="500" width="300" hspace="40">
+</p>
+<p float="left">
+  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200518-042632.png" height="500" width="300" hspace="40">
+  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200518-042719.png" height="500" width="300" hspace="40">
+</p>
 <h2>Credits</h2>
  <ul>
   <li>Material Design by Google</li>
