@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "210212187191",
+    "firebase_url": "https://pivuzz-f6ce1.firebaseio.com",
+    "project_id": "pivuzz-f6ce1",
+    "storage_bucket": "pivuzz-f6ce1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210212187191:android:94442a2d61f4adee4fa3b2",
+        "android_client_info": {
+          "package_name": "com.syehan.pivuzz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210212187191-dng2l1q5aqku6uvhemr9qe3e6s1t2api.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Zu5bL5U_cgq6g5448DQ2LS9XJc5Bpsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210212187191-dng2l1q5aqku6uvhemr9qe3e6s1t2api.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

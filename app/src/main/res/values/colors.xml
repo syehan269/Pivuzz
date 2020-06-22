@@ -11,4 +11,8 @@
     <color name="ripple">#2B2B2B</color>
     <color name="trans">#00FFFFFF</color>
     <color name="bruh">#A47C7C7C</color>
+    <color name="red">#d32f2f</color>
+    <color name="green">#00701a</color>
+    <color name="black40">#263238</color>
+    <color name="black10">#212121</color>
 </resources>

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_default.*
 
 class ActivityDefault : AppCompatActivity() {
@@ -30,6 +31,7 @@ class ActivityDefault : AppCompatActivity() {
                 }
                 R.id.logout ->{
                     accountPreference.removeValue("isLogin")
+                    FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this, ActivityLogin::class.java))
                     finish()
                     return@setOnMenuItemClickListener true

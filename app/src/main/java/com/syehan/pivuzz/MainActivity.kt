@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +15,9 @@ class MainActivity : AppCompatActivity() {
         Handler().postDelayed({
 
             val accountPreference = AccountPreference(this)
-            if (accountPreference.getBoolean("isLogin")){
+            val fbAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
+            if (accountPreference.getBoolean("isLogin") && fbAuth.currentUser != null){
                 startActivity(Intent(this, ActivityDefault::class.java))
                 finish()
             }else{
@@ -23,6 +26,5 @@ class MainActivity : AppCompatActivity() {
             }
 
         }, 300)
-
     }
 }

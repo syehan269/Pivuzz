@@ -58,7 +58,7 @@
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
     <string name="login">Login</string>
-    <string name="enterName">Enter Username</string>
+    <string name="enterName">Enter Email</string>
     <string name="enterPass">Enter Password</string>
     <string name="createAcc">Create an account</string>
     <string name="register">Register</string>
