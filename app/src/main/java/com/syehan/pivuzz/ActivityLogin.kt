@@ -22,6 +22,7 @@ class ActivityLogin : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         accountPreference = AccountPreference(this)
+        progressDialog = ProgressDialog(this)
 
         btn_to_register.setOnClickListener {
             startActivity(Intent(this, ActivityRegister::class.java))
@@ -37,13 +38,13 @@ class ActivityLogin : AppCompatActivity() {
 
             if (inputName == getEmail && inputPass == getPass){
                 authLogin(getEmail, getPass)
-            }else if(inputName.isEmpty() || inputPass.isEmpty()){
+            }else if (inputName.isEmpty() || inputPass.isEmpty()){
                 Toast.makeText(this, "Fill all the field", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(this, "No account has been registered", Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
+            }else{
+                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 
@@ -61,11 +62,7 @@ class ActivityLogin : AppCompatActivity() {
                     Log.d("fbAuth", task.exception.toString())
                     progressDialog.dismiss()
                 }
-            }.addOnFailureListener {
-                Toast.makeText(baseContext, "Login error", Toast.LENGTH_SHORT).show()
-                progressDialog.dismiss()
             }
-
     }
 
     override fun onStart() {

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.syehan.pivuzz.R
 import com.syehan.pivuzz.model.DailyReportItem
 import com.syehan.pivuzz.model.DeathsX
+import java.text.NumberFormat
 
 class DailyAdapter internal constructor(
     private val context: Context,
@@ -36,9 +37,18 @@ class DailyAdapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: DailyHolder, position: Int) {
-        holder.tvConfirm.text = list[position].totalConfirmed.toString()
-        holder.tvRecov.text = list[position].totalRecovered.toString()
-        holder.tvDeath.text = list[position].deaths.total.toString()
+        val confirm = list[position].totalConfirmed
+        val death = list[position].totalRecovered
+        val recov = list[position].deaths.total
+        val reformat = NumberFormat.getInstance()
+
+        val reRecov = reformat.format(recov)
+        val reDeat = reformat.format(death)
+        val reCon = reformat.format(confirm)
+
+        holder.tvConfirm.text = reCon
+        holder.tvRecov.text = reRecov
+        holder.tvDeath.text = reDeat
         holder.tvDate.text = list[position].reportDate
     }
 }

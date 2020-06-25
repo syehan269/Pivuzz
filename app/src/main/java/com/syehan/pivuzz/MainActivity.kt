@@ -1,6 +1,8 @@
 package com.syehan.pivuzz
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -16,8 +18,20 @@ class MainActivity : AppCompatActivity() {
 
             val accountPreference = AccountPreference(this)
             val fbAuth: FirebaseAuth = FirebaseAuth.getInstance()
+            val connectManager = baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val checkNetwork = connectManager.activeNetwork
+            val networkCapabilities = connectManager.getNetworkCapabilities(checkNetwork)
 
-            if (accountPreference.getBoolean("isLogin") && fbAuth.currentUser != null){
+            if (networkCapabilities != null){
+                if (fbAuth.currentUser != null){
+                    startActivity(Intent(this, ActivityDefault::class.java))
+                    finish()
+                }else{
+                    startActivity(Intent(this, ActivityLogin::class.java))
+                    finish()
+                }
+
+            }else if (accountPreference.getBoolean("isLogin")){
                 startActivity(Intent(this, ActivityDefault::class.java))
                 finish()
             }else{

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.Auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.syehan.pivuzz.firestore.Account
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -63,6 +64,7 @@ class ActivityRegister : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful){
                     fireAccount(email, pass, location, locId)
+                    subToGlobal()
                     Log.d("fbAuth", "Account create success in Auth")
                 }else{
                     Toast.makeText(baseContext, "Auth failed", Toast.LENGTH_SHORT).show()
@@ -72,6 +74,19 @@ class ActivityRegister : AppCompatActivity() {
             }.addOnFailureListener { 
                 Toast.makeText(baseContext, "Failed to create account (Auth)", Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
+            }
+    }
+
+    private fun subToGlobal() {
+        FirebaseMessaging.getInstance().subscribeToTopic("global")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    //Toast.makeText(this, "subbed to global", Toast.LENGTH_SHORT).show()
+                    Log.d("FCM", task.result.toString())
+                }else{
+                    //Toast.makeText(this, "sub to global failed", Toast.LENGTH_SHORT).show()
+                    Log.d("FCM", task.exception.toString())
+                }
             }
     }
 
@@ -90,13 +105,10 @@ class ActivityRegister : AppCompatActivity() {
                     Log.d("fbAuth", "Account create success in firestore")
                     startActivity(Intent(this, ActivityLogin::class.java))
                 }else{
-                    Toast.makeText(baseContext, "Fire failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Register failed", Toast.LENGTH_SHORT).show()
                     Log.d("fbAuth", task.exception.toString())
                     progressDialog.dismiss()
                 }
-            }.addOnFailureListener {
-                Toast.makeText(baseContext, "Failed to create account (Fire)", Toast.LENGTH_SHORT).show()
-                progressDialog.dismiss()
             }
 
     }

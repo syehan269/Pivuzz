@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.syehan.pivuzz.R
 import com.syehan.pivuzz.model.DateItem
+import java.text.NumberFormat
 
 class DateAdapter internal constructor(
     private val list: List<DateItem>
@@ -30,9 +31,18 @@ class DateAdapter internal constructor(
 
     override fun onBindViewHolder(holder: DateHolder, position: Int) {
         val getPlace = list[position].countryRegion + ", "+ list[position].provinceState
-        holder.tvConfirm.text = list[position].confirmed
+        val confirm = list[position].confirmed.toInt()
+        val death = list[position].deaths.toInt()
+        val recov = list[position].recovered.toInt()
+        val reformat = NumberFormat.getInstance()
+
+        val reRecov = reformat.format(recov)
+        val reDeat = reformat.format(death)
+        val reCon = reformat.format(confirm)
+
+        holder.tvConfirm.text = reCon
         holder.tvCountry.text = getPlace
-        holder.tvDeath.text = list[position].deaths
-        holder.tvRecov.text = list[position].recovered
+        holder.tvDeath.text = reDeat
+        holder.tvRecov.text = reRecov
     }
 }
