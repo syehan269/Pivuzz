@@ -3,30 +3,34 @@ package com.syehan.pivuzz
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.syehan.pivuzz.api.ApiClient
 import com.syehan.pivuzz.firestore.Global
 import com.syehan.pivuzz.model.CovMain
 import com.syehan.pivuzz.model.DailyReportItem
 import com.syehan.pivuzz.recycleradapter.DailyAdapter
+import com.syehan.pivuzz.roomdir.CovidViewModel
+import com.syehan.pivuzz.roomdir.GlobalData
 import kotlinx.android.synthetic.main.fragment_global.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.NumberFormat
-import kotlin.collections.ArrayList
 
 class FragmentGlobal : Fragment() {
 
     val dailyList = ArrayList<DailyReportItem>()
+    private lateinit var covidViewModel: CovidViewModel
+    val sConfirm = "confirmed"
+    val sDeath = "death"
+    val sRecov = "recovered"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +44,8 @@ class FragmentGlobal : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val manager = LinearLayoutManager(context)
+        covidViewModel = ViewModelProvider(this).get(CovidViewModel::class.java)
+
         manager.isSmoothScrollbarEnabled = true
         manager.orientation = LinearLayoutManager.VERTICAL
 
@@ -56,6 +62,11 @@ class FragmentGlobal : Fragment() {
         super.onStart()
         setList()
         setNum()
+        roomGlobalGetItem()
+    }
+
+    private fun roomGlobalGetItem() {
+        covidViewModel.getGlobalItem("confirmed")
     }
 
     private fun setNum() {
@@ -77,6 +88,8 @@ class FragmentGlobal : Fragment() {
                 val reRecov = reformat.format(recovered)
 
                 fireGlobal(confirm, death, recovered)
+                covidViewModel.deleteGlobal()
+                roomGlobalInsert(reConfirm, reDeath, reRecov)
 
                 tv_nmb_confirm_global.text = reConfirm.toString()
                 tv_nmb_death_global.text = reDeath.toString()
@@ -84,6 +97,24 @@ class FragmentGlobal : Fragment() {
             }
 
         })
+    }
+
+    private fun roomGlobalInsert(reConfirm: String?, reDeath: String?, reRecov: String?) {
+
+        var globalData = GlobalData("1", sConfirm, reConfirm!!)
+        loge("room", "${globalData.category}: ${globalData.count}")
+        covidViewModel.insertGlobal(globalData)
+
+        globalData = GlobalData("2", sRecov, reRecov!!)
+        loge("room", "${globalData.category}: ${globalData.count}")
+        covidViewModel.insertGlobal(globalData)
+
+        globalData = GlobalData("3", sDeath, reDeath!!)
+        loge("room", "${globalData.category}: ${globalData.count}")
+        covidViewModel.insertGlobal(globalData)
+
+        loge("room",covidViewModel.getCountGlobal().toString())
+
     }
 
     private fun fireGlobal(reConfirm: Int, reDeath: Int, reRecov: Int) {
@@ -185,6 +216,10 @@ class FragmentGlobal : Fragment() {
 
     private fun log(message: String) {
         Log.d("retro", message)
+    }
+
+    private fun loge(tag: String, message: String){
+        Log.d(tag, message)
     }
 
     private fun toast(message: String?) {

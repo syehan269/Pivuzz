@@ -1,13 +1,12 @@
 package com.syehan.pivuzz
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.syehan.pivuzz.api.ApiClient
@@ -31,10 +30,6 @@ class FragmentLocal : Fragment() {
         // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_local, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onStart() {
