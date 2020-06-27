@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlin.math.log
 
 class ActivityLogin : AppCompatActivity() {
 
@@ -36,13 +37,15 @@ class ActivityLogin : AppCompatActivity() {
 
             showDialog()
 
-            if (inputName == getEmail && inputPass == getPass){
-                authLogin(getEmail, getPass)
+            if (inputName.isNotEmpty() && inputPass.isNotEmpty()){
+                authLogin(inputName, inputPass)
             }else if (inputName.isEmpty() || inputPass.isEmpty()){
                 Toast.makeText(this, "Fill all the field", Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
             }else{
                 Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
+                progressDialog.dismiss()
+                Log.e("fbAuth","faggot")
             }
 
         }
@@ -55,6 +58,8 @@ class ActivityLogin : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful){
                     accountPreference.save("isLogin", true)
+                    accountPreference.save("password", pass)
+                    accountPreference.save("email", email)
                     Toast.makeText(baseContext, "Login success", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, ActivityDefault::class.java))
                 }else {
@@ -67,7 +72,6 @@ class ActivityLogin : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val token: Task<InstanceIdResult> = FirebaseInstanceId.getInstance().instanceId
 
     }
 

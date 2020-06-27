@@ -287,12 +287,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/separator" />
 
+            <com.pnikosis.materialishprogress.ProgressWheel
+                android:id="@+id/progress_circular"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                app:matProg_progressIndeterminate="true"
+                app:matProg_barColor="@color/colorPrimary"
+                app:matProg_spinSpeed="1"
+                app:layout_constraintTop_toBottomOf="@id/separator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_more"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_global"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_global"

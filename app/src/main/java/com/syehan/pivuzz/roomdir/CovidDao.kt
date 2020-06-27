@@ -1,5 +1,6 @@
 package com.syehan.pivuzz.roomdir
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -8,19 +9,38 @@ import androidx.room.Query
 @Dao
 interface CovidDao {
 
-    @Query("Delete from GlobalData")
-    suspend fun deleteAll()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDaily(dailyRep: DailyRep)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(global: GlobalData)
+    suspend fun insertGlobe(globalData: GlobalData)
 
-    @Query("Update GlobalData Set count = :count Where category = :category")
-    suspend fun updateGlobalItem(category: String, count: String)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertLocal(localData: LocalData)
+
+    @Query("Delete from DailyReport")
+    suspend fun deleteDaily()
+
+    @Query("Delete from GlobalData")
+    suspend fun deleteGlobal()
+
+    @Query("Delete from LocalData")
+    suspend fun deleteLocal()
 
     @Query("Select * from GlobalData where category = :category")
-    suspend fun getGlobalItem(category: String): List<GlobalData>
+    fun getGlobalItem(category: String): LiveData<List<GlobalData>>
 
-    @Query("Select Count('category') as itemCount from GlobalData")
-    suspend fun getCountGlobal(): CountItem
+    @Query("Select * from GlobalData")
+    fun getGlobal(): LiveData<List<GlobalData>>
+
+    @Query("Select * from LocalData")
+    fun getLocal(): LiveData<List<LocalData>>
+
+    @Query("Select Count(category) as itemCount from GlobalData")
+    suspend fun getCountGlobal(): Int
+
+    @Query("Select * from DailyReport")
+    fun getDaily(): LiveData<List<DailyRep>>
+
 
 }

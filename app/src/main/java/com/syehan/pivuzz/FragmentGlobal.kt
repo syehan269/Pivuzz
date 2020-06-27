@@ -1,6 +1,8 @@
 package com.syehan.pivuzz
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,15 +10,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.MetadataChanges
+import com.google.firebase.firestore.Source
 import com.syehan.pivuzz.api.ApiClient
 import com.syehan.pivuzz.firestore.Global
 import com.syehan.pivuzz.model.CovMain
 import com.syehan.pivuzz.model.DailyReportItem
 import com.syehan.pivuzz.recycleradapter.DailyAdapter
+import com.syehan.pivuzz.recycleradapter.RoomDailyAdapter
 import com.syehan.pivuzz.roomdir.CovidViewModel
+import com.syehan.pivuzz.roomdir.DailyRep
 import com.syehan.pivuzz.roomdir.GlobalData
 import kotlinx.android.synthetic.main.fragment_global.*
 import retrofit2.Call
@@ -56,17 +65,24 @@ class FragmentGlobal : Fragment() {
         rv_global.layoutManager = manager
         rv_global.adapter = DailyAdapter(activity!!.applicationContext, dailyList)
 
+        val connectManager = activity!!.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val checkNetwork = connectManager.activeNetwork
+        val networkCapabilities = connectManager.getNetworkCapabilities(checkNetwork)
     }
 
     override fun onStart() {
         super.onStart()
         setList()
         setNum()
-        roomGlobalGetItem()
     }
 
-    private fun roomGlobalGetItem() {
-        covidViewModel.getGlobalItem("confirmed")
+    private fun roomList() {
+        covidViewModel.allDailyRep.observe(viewLifecycleOwner, Observer { dailyList ->
+            dailyList?.let {
+                progress_circular.visibility = View.GONE
+                rv_global.swapAdapter(RoomDailyAdapter(activity!!.applicationContext, dailyList), true)
+            }
+        })
     }
 
     private fun setNum() {
@@ -74,8 +90,9 @@ class FragmentGlobal : Fragment() {
         val reformat = NumberFormat.getInstance()
         call.enqueue(object : Callback<CovMain>{
             override fun onFailure(call: Call<CovMain>, t: Throwable) {
-                toast(t.localizedMessage)
+                //toast(t.localizedMessage)
                 log(t.message!!)
+                setRoomGlobe()
             }
 
             override fun onResponse(call: Call<CovMain>, response: Response<CovMain>) {
@@ -87,15 +104,31 @@ class FragmentGlobal : Fragment() {
                 val reDeath = reformat.format(death)
                 val reRecov = reformat.format(recovered)
 
+                covidViewModel.deleteGlobe()
                 fireGlobal(confirm, death, recovered)
-                covidViewModel.deleteGlobal()
                 roomGlobalInsert(reConfirm, reDeath, reRecov)
 
                 tv_nmb_confirm_global.text = reConfirm.toString()
                 tv_nmb_death_global.text = reDeath.toString()
                 tv_nmb_recover_global.text = reRecov.toString()
+                btn_more.visibility = View.VISIBLE
             }
 
+        })
+    }
+
+    private fun setRoomGlobe() {
+        covidViewModel.allGlobal.observe(viewLifecycleOwner, Observer { dailyList ->
+            dailyList?.let {
+                val confirm = dailyList[0].count
+                val recov = dailyList[1].count
+                val death = dailyList[2].count
+
+                tv_nmb_confirm_global.text = confirm
+                tv_nmb_death_global.text = death
+                tv_nmb_recover_global.text = recov
+
+            }
         })
     }
 
@@ -112,8 +145,6 @@ class FragmentGlobal : Fragment() {
         globalData = GlobalData("3", sDeath, reDeath!!)
         loge("room", "${globalData.category}: ${globalData.count}")
         covidViewModel.insertGlobal(globalData)
-
-        loge("room",covidViewModel.getCountGlobal().toString())
 
     }
 
@@ -199,19 +230,37 @@ class FragmentGlobal : Fragment() {
         val call: Call<List<DailyReportItem>> = ApiClient.getClient.getListDaily()
         call.enqueue(object : Callback<List<DailyReportItem>>{
             override fun onFailure(call: Call<List<DailyReportItem>>, t: Throwable) {
-                toast(t.message)
+                loge("retro",t.message.toString())
+                roomList()
+                setOff()
             }
-
             override fun onResponse(
                 call: Call<List<DailyReportItem>>,
                 response: Response<List<DailyReportItem>>
             ) {
                 dailyList.addAll(response.body()!!)
                 dailyList.reverse()
+                progress_circular.visibility = View.GONE
                 rv_global.adapter!!.notifyDataSetChanged()
+                covidViewModel.deleteDaily()
+
+                for ( i in 1..10){
+                    var newDate: String = dailyList[i].reportDate
+                    var newDeath: Int = dailyList[i].deaths.total
+                    var newRecov: Int = dailyList[i].totalRecovered
+                    var newCon: Int = dailyList[i].totalConfirmed
+                    var dailyRep = DailyRep(newDate, newCon, newRecov, newDeath)
+                    covidViewModel.insertDaily(dailyRep)
+                }
+
             }
 
         })
+    }
+
+    private fun setOff() {
+        val reference = FirebaseFirestore.getInstance().collection("GlobalData").document("main")
+
     }
 
     private fun log(message: String) {

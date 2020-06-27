@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.syehan.pivuzz.api.ApiClient
 import com.syehan.pivuzz.firestore.Global
 import com.syehan.pivuzz.model.Local
+import com.syehan.pivuzz.roomdir.CovidViewModel
+import com.syehan.pivuzz.roomdir.LocalData
+import kotlinx.android.synthetic.main.fragment_global.*
 import kotlinx.android.synthetic.main.fragment_local.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +28,11 @@ import java.text.NumberFormat
  */
 class FragmentLocal : Fragment() {
 
+    private val sConfirm = "confirmed"
+    private val sDeath = "death"
+    private val sRecov = "recovered"
+    private lateinit var covidViewModel: CovidViewModel
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,25 +42,38 @@ class FragmentLocal : Fragment() {
         return inflater.inflate(R.layout.fragment_local, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        setNum()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        covidViewModel = ViewModelProvider(this).get(CovidViewModel::class.java)
     }
 
-    private fun setNum() {
+    override fun onStart() {
+        super.onStart()
+        FirebaseFirestore.getInstance().collection("Account").document(FirebaseAuth.getInstance().currentUser!!.uid)
+            .addSnapshotListener { snapshot, firestoreException ->
+                if (snapshot != null){
+                    val country = snapshot.get("nation").toString()
+                    setNum(country)
+                }else{
+                    toast(firestoreException?.message.toString())
+                }
+            }
+    }
+
+    private fun setNum(country: String) {
         val accountPreference = AccountPreference(this.context!!)
-        val getCount = accountPreference.getString("location").toString()
         val reformat = NumberFormat.getInstance()
 
-        val call: Call<Local> = ApiClient.getClient.getLocal(getCount)
-
+        val call: Call<Local> = ApiClient.getClient.getLocal(country)
         call.enqueue(object : Callback<Local>{
             override fun onFailure(call: Call<Local>, t: Throwable) {
-                toast(t.localizedMessage)
+                //toast(t.localizedMessage)
                 log(t.message!!)
+                setDash()
             }
 
             override fun onResponse(call: Call<Local>, response: Response<Local>) {
+
                 val confirm: Int = response.body()!!.confirmed.value
                 val death: Int = response.body()!!.deaths.value
                 val recov: Int= response.body()!!.recovered.value
@@ -59,7 +82,13 @@ class FragmentLocal : Fragment() {
                 val death1 = reformat.format(death)
                 val recoved = reformat.format(recov)
 
+                log(confirm.toString())
+                log(death.toString())
+                log(recov.toString())
+
+                covidViewModel.deleteLocal()
                 fireGlobal(confirm, death, recov)
+                roomGlobalInsert(confirmed, death1, recoved)
                 
                 tv_nmb_confirm_local.text = confirmed
                 tv_nmb_death_local.text = death1
@@ -67,6 +96,36 @@ class FragmentLocal : Fragment() {
             }
 
         })
+    }
+
+    private fun setDash() {
+        covidViewModel.allLocal.observe(viewLifecycleOwner, Observer { dailyList ->
+            dailyList?.let {
+                val confirm = dailyList[0].count
+                val recov = dailyList[1].count
+                val death = dailyList[2].count
+
+                tv_nmb_confirm_local.text = confirm
+                tv_nmb_death_local.text = death
+                tv_nmb_recover_local.text = recov
+            }
+        })
+    }
+
+    private fun roomGlobalInsert(reConfirm: String?, reDeath: String?, reRecov: String?) {
+
+        var globalData = LocalData("1", sConfirm, reConfirm!!)
+        loge("room", "${globalData.category}: ${globalData.count}")
+        covidViewModel.insertLocal(globalData)
+
+        globalData = LocalData("2", sRecov, reRecov!!)
+        loge("room", "${globalData.category}: ${globalData.count}")
+        covidViewModel.insertLocal(globalData)
+
+        globalData = LocalData("3", sDeath, reDeath!!)
+        loge("room", "${globalData.category}: ${globalData.count}")
+        covidViewModel.insertLocal(globalData)
+
     }
 
     private fun fireGlobal(confirmed: Int, death: Int, recoved: Int) {
@@ -159,6 +218,11 @@ class FragmentLocal : Fragment() {
     private fun log(message: String) {
         Log.d("retro", message)
     }
+
+    private fun loge(tag: String, message: String){
+        Log.d(tag, message)
+    }
+
 
     private fun toast(message: String?) {
         Toast.makeText(activity!!.applicationContext, message, Toast.LENGTH_SHORT).show()

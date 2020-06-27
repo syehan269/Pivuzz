@@ -36,9 +36,6 @@ class ActivityProfile : AppCompatActivity() {
         val setLoc: Int? = accountPreference.getInt("locationId")
         progressDialog = ProgressDialog(this)
 
-        et_pass_pro.setText(setPass)
-        et_name_pro.setText(setName)
-        spn_location.setSelection(setLoc!!)
         //spn_location.adapter = adapter
 
         btn_profile.setOnClickListener {
@@ -63,6 +60,29 @@ class ActivityProfile : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setField()
+    }
+
+    private fun setField() {
+        FirebaseFirestore.getInstance().collection("Account").document(FirebaseAuth.getInstance().currentUser!!.uid)
+            .addSnapshotListener { snapshot, firestoreException ->
+                if (snapshot != null){
+                    val getEmail = snapshot.get("email").toString()
+                    val getPass = snapshot.get("password").toString()
+                    val getCount = snapshot.get("nationId").toString()
+
+                    et_pass_pro.setText(getPass)
+                    et_name_pro.setText(getEmail)
+                    spn_location.setSelection(getCount.toInt())
+
+                }else{
+                    toast(firestoreException?.message.toString())
+                }
+            }
     }
 
     private fun showProg() {

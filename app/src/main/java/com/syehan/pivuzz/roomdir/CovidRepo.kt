@@ -1,33 +1,49 @@
 package com.syehan.pivuzz.roomdir
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 
 class CovidRepo(private val covidDao: CovidDao) {
+
+    val allDailyRep: LiveData<List<DailyRep>> = covidDao.getDaily()
+    val allGlobe: LiveData<List<GlobalData>> = covidDao.getGlobal()
+    val allLocal: LiveData<List<LocalData>> = covidDao.getLocal()
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insertDaily(dailyRep: DailyRep){
+        covidDao.insertDaily(dailyRep)
+    }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insertGlobal(globalData: GlobalData){
-        covidDao.insert(globalData)
+        covidDao.insertGlobe(globalData)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insertLocal(localData: LocalData){
+        covidDao.insertLocal(localData)
     }
 
     @WorkerThread
-    suspend fun updateGlobal(count: String, category: String){
-        covidDao.updateGlobalItem(category, count)
-    }
-
-    @WorkerThread
-    suspend fun getGlobalItem(category: String){
-        covidDao.getGlobalItem(category)
+    fun getItemGlo(category: String) {
+        //return covidDao.getGlobalItem(category)
     }
 
     @WorkerThread
     suspend fun deleteGlobal(){
-        covidDao.deleteAll()
+        covidDao.deleteGlobal()
     }
 
     @WorkerThread
-    suspend fun getCountGlobal(){
-        covidDao.getCountGlobal()
+    suspend fun deleteDaily(){
+        covidDao.deleteDaily()
     }
 
+    @WorkerThread
+    suspend fun deleteLocal(){
+        covidDao.deleteLocal()
+    }
 }

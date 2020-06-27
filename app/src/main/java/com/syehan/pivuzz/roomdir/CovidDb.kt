@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = [GlobalData::class], version = 1, exportSchema = false)
-public abstract class CovidDb : RoomDatabase() {
+@Database(entities = [DailyRep::class, GlobalData::class, LocalData::class], version = 1, exportSchema = false)
+abstract class CovidDb : RoomDatabase() {
 
     abstract fun covidDao(): CovidDao
 
