@@ -1,5 +1,5 @@
 # Pivuzz
-<a href="https://drive.google.com/file/d/1Ts7-_z54JN89WQzHyEYhiERbWsb6fALx/view?usp=sharing">Pivuzz</a> merupakan aplikasi untuk mengamati perkembangan dari wabah Covid-19.
+<a href="https://drive.google.com/file/d/1vVvgaL4nggeh4GVfYy0i1c78rFKDBblW/view?usp=sharing">Pivuzz</a> merupakan aplikasi untuk mengamati perkembangan dari wabah Covid-19.
 <ul>
   <li> Statistik dasar mengenai jumlah kasus terkonfirmasi, jumlah kematian, jumlah pulih, untuk skala global maupun regional.</li>
   <li> Laporan harian dari wabah, setiap harinya.</li>
