@@ -5,6 +5,14 @@
   <li> Laporan harian dari wabah, setiap harinya.</li>
 </ul>
 <br>
+Layanan firebase yang diimplementasikan:
+<ul>
+  <li>Firebase Authentication</li>
+  <li>Firebase Firestore</li>
+  <li>Firebase Cloud Function</li>
+  <li>Firebase Cloud Messaging</li>
+</ul>
+Penambahan offline capability menggunakan Room local database.
  <h2>Screenshoot</h2>
 <p float="left">
  <img src="https://github.com/syehan269/Pivuzz/blob/master/SS/Screenshot_20200516-174449.png" height="500" width="300" hspace="40">
@@ -26,4 +34,5 @@
   <li>Retrofit2 by Square, Inc.</li>
   <li>Kotlin Plugin by JetBrains</li>
   <li>Covid-19 API by Mathdroid</li>
+  <li>Material-ish Proggress by pnikosis</li>
 </ul>
