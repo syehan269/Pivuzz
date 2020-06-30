@@ -8,7 +8,7 @@
 Layanan firebase yang diimplementasikan:
 <ul>
   <li>Firebase Authentication</li>
-  <li>Firebase Firestore</li>
+  <li>Firebase Cloud Firestore</li>
   <li>Firebase Cloud Function</li>
   <li>Firebase Cloud Messaging</li>
 </ul>
